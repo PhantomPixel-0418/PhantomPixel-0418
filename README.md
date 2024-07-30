@@ -1,6 +1,6 @@
-- 👋 Hi, I’m @ZhangJinyuJerry
+- 👋 Hi, I’m @PhantomPixel-0418
 - 👀 I’m interested in programming
-- 🌱 I’m currently learning Python
+- 🌱 I’m currently learning C++
 - 💞️ I’m looking to collaborate on ...
 - 📫 How to reach me zhangjinyu0418@hotmail.com
 - 😄 Pronouns: ...
