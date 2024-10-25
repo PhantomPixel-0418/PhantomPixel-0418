@@ -1,5 +1,7 @@
 # 👋 𝑯𝒊, 𝑰'𝒎 @𝑷𝒉𝒂𝒏𝒕𝒐𝒎𝑷𝒊𝒙𝒆𝒍𝒍-𝟎𝟒𝟏𝟖
 
+English | [中文简体](https://github.com/PhantomPixel-0418/PhantomPixel-0418/blob/main/README.md)
+
 I am [𝑷𝒉𝒂𝒏𝒕𝒐𝒎𝑷𝒊𝒙𝒆𝒍-𝟎𝟒𝟏𝟖](https://github.com/PhantomPixel-0418 )! Was a middle schooler and this is my GitHub page. (Rest assured it's a more-than-average person The card is 𝑪 🫠)
 
 # 𝑮𝒊𝒕𝒉𝒖𝒃 Personal Stats.
