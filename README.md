@@ -1,6 +1,6 @@
 # 👋 𝑯𝒊, 𝑰’𝒎 @𝑷𝒉𝒂𝒏𝒕𝒐𝒎𝑷𝒊𝒙𝒆𝒍-𝟎𝟒𝟏𝟖
 
-[English](https://github.com/PhantomPixel-0418/PhantomPixel-0418/blob/main/README_us.md)|中文简体
+[English](https://github.com/PhantomPixel-0418/PhantomPixel-0418/blob/main/README_en.md) | 中文简体
 
 我是 [𝑷𝒉𝒂𝒏𝒕𝒐𝒎𝑷𝒊𝒙𝒆𝒍-𝟎𝟒𝟏𝟖](https://github.com/PhantomPixel-0418) ！是个初中生，这是我的GitHub主页。（放心 是一个比普通人还普通的人 卡片是 𝑪 哦🫠）
 
