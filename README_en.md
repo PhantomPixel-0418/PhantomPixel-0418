@@ -2,7 +2,7 @@
 
 English | [中文简体](/README.md)
 
-
+OK, it's summer holiday!
 
 ## About me
 
