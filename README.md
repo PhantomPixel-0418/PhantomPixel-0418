@@ -2,7 +2,7 @@
 
 [English](/README_en.md) | 中文简体
 
-
+ok，暑假也是终于来了好吧！
 
 ## 关于我
 
