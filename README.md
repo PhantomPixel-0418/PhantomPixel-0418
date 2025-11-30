@@ -10,10 +10,6 @@
 
 ## GitHub 统计
 
-[![GitHub stats](https://github-readme-stats.vercel.app/api?username=PhantomPixel-0418&show_icons=true&locale=cn)](https://github.com/PhantomPixel-0418/github-readme-stats)
-
-[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=PhantomPixel-0418&layout=compact&locale=cn)](https://github.com/PhantomPixel-0418/github-readme-stats)
-
 <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=PhantomPixel-0418" alt="PhantomPixel-0418" /></a> </p>
 
 <p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=PhantomPixel-0418&show_icons=true&locale=cn&layout=compact" alt="Top languages" /></p>
