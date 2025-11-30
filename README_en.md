@@ -2,20 +2,24 @@
 
 English | [中文简体](/README.md)
 
-OK, it's summer holiday!
+---
 
-## About me
+## About Me
 
-I am [𝑷𝒉𝒂𝒏𝒕𝒐𝒎𝑷𝒊𝒙𝒆𝒍-𝟎𝟒𝟏𝟖](https://github.com/PhantomPixel-0418)!
+Hello! I'm @PhantomPixel-0418 — a 13-year-old middle school student currently in 8th grade.
 
-I am a middle school student, welcome to my GitHub page━(*｀∀´*)ノ亻!
+## GitHub Stats
 
+[![GitHub stats](https://github-readme-stats.vercel.app/api?username=PhantomPixel-0418&show_icons=true&locale=en)](https://github.com/PhantomPixel-0418/github-readme-stats)
 
+[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=PhantomPixel-0418&layout=compact&locale=en)](https://github.com/PhantomPixel-0418/github-readme-stats)
 
-## 𝑮𝒊𝒕𝒉𝒖𝒃 Personal Stats
+<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=PhantomPixel-0418" alt="PhantomPixel-0418" /></a> </p>
 
-> [!Note]
-> Use [𝑨𝒏𝒖𝒓𝒂𝒈 𝑯𝒂𝒛𝒓𝒂](https://github.com/anuraghazra/github-readme-stats) to show personal stats with open source GitHub card stats.
+<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=PhantomPixel-0418&show_icons=true&locale=en&layout=compact" alt="Top languages" /></p>
 
-[![PhantomPixel-0418's GitHub stats](https://github-readme-stats.vercel.app/api?username=PhantomPixel-0418&show_icons=true&locale=en)](https://github.com/PhantomPixel-0418/github-readme-stats)
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=PhantomPixel-0418&layout=compact&locale=en)](https://github.com/PhantomPixel-0418/github-readme-stats)
+<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=PhantomPixel-0418&show_icons=true&locale=en" alt="GitHub stats" /></p>
+
+<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=PhantomPixel-0418&" alt="GitHub streak" /></p>
+
+<p align="left"> <img src="https://komarev.com/ghpvc/?username=PhantomPixel-0418&label=Profile views&color=0e75b6&style=flat" alt="Profile views" /> </p>
