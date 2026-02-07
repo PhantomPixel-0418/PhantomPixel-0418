@@ -1,0 +1,46 @@
+name: Update Last.fm Stats
+
+on:
+  schedule:
+    # 每天UTC时间0点运行（对应北京时间早上8点），你可以根据需要调整cron表达式
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 允许手动触发此工作流
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # 赋予工作流写入仓库的权限
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch Last.fm Data
+        id: fetch
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          LASTFM_USERNAME: ${{ secrets.LASTFM_USERNAME }} # 或者直接写死：'YOUR_LASTFM_USERNAME'
+        run: |
+          # 调用Last.fm API，获取用户信息（其中包含总播放量）
+          RESPONSE=$(curl -s "https://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=${LASTFM_USERNAME}&api_key=${LASTFM_API_KEY}&format=json")
+          
+          # 使用jq解析JSON，提取总播放数。如果没有jq命令，下一行会安装它。
+          sudo apt-get install -y jq > /dev/null 2>&1 || true
+          TOTAL_PLAYS=$(echo $RESPONSE | jq -r '.user.playcount // 0')
+          
+          # 输出获取到的播放量，供后续步骤使用
+          echo "total_plays=$TOTAL_PLAYS" >> $GITHUB_OUTPUT
+          
+          # 同时创建一个包含播放量的JSON文件
+          echo "{\"playcount\": $TOTAL_PLAYS, \"updated_at\": \"$(date -Iseconds)\"}" > lastfm_data.json
+          
+          echo "🎵 Successfully fetched data. Total Plays: $TOTAL_PLAYS"
+
+      - name: Commit and Push if Changed
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m "🤖 chore: update Last.fm stats [skip ci]" || echo "No changes to commit"
+          git push
