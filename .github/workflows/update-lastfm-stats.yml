@@ -3,7 +3,7 @@ name: Update Last.fm Stats
 on:
   schedule:
     # 每天UTC时间0点运行（对应北京时间早上8点），你可以根据需要调整cron表达式
-    - cron: '0 0 * * *'
+    - cron: '0 16 * * *'
   workflow_dispatch: # 允许手动触发此工作流
 
 jobs:
