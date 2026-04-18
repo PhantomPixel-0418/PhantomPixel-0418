@@ -22,7 +22,6 @@ jobs:
           config_timezone: Asia/Shanghai
           filename: metrics.job1.svg
 
-          # 插件参数必须加 plugin_ 前缀
           plugin_isocalendar: yes
           plugin_isocalendar_duration: full-year
 
@@ -45,15 +44,25 @@ jobs:
           plugin_music_limit: 4
 
           plugin_achievements: yes
-          achievements_limit: 6   # 这个参数在有效列表中不带 plugin_ 前缀（特例）
-          # 可选： achievements_threshold: B
+          # achievements_limit 参数被拒绝，因此省略，使用默认值
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 2
 
       - name: Fix commit author
         run: |
           git config --global user.name "PhantomPixel-0418"
           git config --global user.email "158539001+PhantomPixel-0418@users.noreply.github.com"
-          git commit --amend --reset-author --no-edit
-          git push --force-with-lease
+          LAST_AUTHOR=$(git log -1 --pretty=format:'%an')
+          if [[ "$LAST_AUTHOR" == "github-actions[bot]" ]]; then
+            git commit --amend --reset-author --no-edit
+            git push --force-with-lease
+          else
+            echo "Last commit author is $LAST_AUTHOR, skipping amend."
+          fi
 
   # ==================== JOB 2 ====================
   metrics-job2:
@@ -72,32 +81,43 @@ jobs:
           filename: metrics.job2.svg
 
           plugin_introduction: yes
-          introduction_title: yes   # 这个参数不带 plugin_ 前缀（有效）
+          plugin_introduction_title: yes    # 注意加 plugin_ 前缀
 
           plugin_people: yes
-          people_limit: 24
-          people_size: 28
-          people_types: followers, following
+          plugin_people_limit: 24
+          plugin_people_size: 28
+          plugin_people_types: followers, following
 
           plugin_reactions: yes
-          reactions_limit: 200
-          reactions_days: 14
+          plugin_reactions_limit: 200
+          plugin_reactions_days: 14
 
           plugin_discussions: yes
-          discussions_limit: 4
-          discussions_categories: announcements, ideas, q-a, general
+          plugin_discussions_limit: 4
+          plugin_discussions_categories: announcements, ideas, q-a, general
 
           plugin_activity: yes
-          activity_limit: 5
-          activity_days: 14
-          activity_filter: issue, pr, review, comment, push
+          plugin_activity_limit: 5
+          plugin_activity_days: 14
+          plugin_activity_filter: issue, pr, review, comment, push
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 2
 
       - name: Fix commit author
         run: |
           git config --global user.name "PhantomPixel-0418"
           git config --global user.email "158539001+PhantomPixel-0418@users.noreply.github.com"
-          git commit --amend --reset-author --no-edit
-          git push --force-with-lease
+          LAST_AUTHOR=$(git log -1 --pretty=format:'%an')
+          if [[ "$LAST_AUTHOR" == "github-actions[bot]" ]]; then
+            git commit --amend --reset-author --no-edit
+            git push --force-with-lease
+          else
+            echo "Last commit author is $LAST_AUTHOR, skipping amend."
+          fi
 
   # ==================== JOB 3 ====================
   metrics-job3:
@@ -123,18 +143,27 @@ jobs:
           plugin_stargazers_charts_type: graph
 
           plugin_traffic: yes
-          traffic_limit: 5   # 不带 plugin_ 前缀
+          plugin_traffic_limit: 5          # 修正为 plugin_traffic_limit
 
           plugin_calendar: yes
-          calendar_limit: 1
+          plugin_calendar_limit: 1          # 修正为 plugin_calendar_limit
 
-          # 使用社区插件写法（注意：plugin_community_16personalities 是有效的）
-          plugin_community_16personalities: yes
-          plugin_community_16personalities_type: "ENFJ"
+          # 16personalities 不被支持，已移除
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 2
 
       - name: Fix commit author
         run: |
           git config --global user.name "PhantomPixel-0418"
           git config --global user.email "158539001+PhantomPixel-0418@users.noreply.github.com"
-          git commit --amend --reset-author --no-edit
-          git push --force-with-lease
+          LAST_AUTHOR=$(git log -1 --pretty=format:'%an')
+          if [[ "$LAST_AUTHOR" == "github-actions[bot]" ]]; then
+            git commit --amend --reset-author --no-edit
+            git push --force-with-lease
+          else
+            echo "Last commit author is $LAST_AUTHOR, skipping amend."
+          fi
