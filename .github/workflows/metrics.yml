@@ -1,0 +1,145 @@
+name: Metrics
+
+on:
+  schedule: [{cron: "0 0 * * *"}]   # 每天 UTC 0 点更新
+  workflow_dispatch:                 # 允许手动触发
+  push: {branches: ["main", "master"]}
+
+jobs:
+  # ==================== JOB 1: 基础数据 + 习惯 + 音乐 + 成就 ====================
+  metrics-job1:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          committer_token: ${{ secrets.GITHUB_TOKEN }}
+          user: PhantomPixel-0418
+          template: classic
+          base: header, activity, community   # 显示头像、活动摘要、社区统计
+          config_timezone: Asia/Shanghai
+          filename: metrics.job1.svg          # 输出文件名
+          
+          author_name: PhantomPixel-0418
+          author_email: 158539001+PhantomPixel-0418@users.noreply.github.com
+          committer_name: PhantomPixel-0418
+          committer_email: 158539001+PhantomPixel-0418@users.noreply.github.com
+
+          # 📅 Isometric commit calendar
+          plugin_isocalendar: yes
+          isocalendar_duration: full-year
+
+          # 🈷️ Languages activity
+          plugin_languages: yes
+          languages_analysis_timeout: 15
+          languages_recent_days: 30
+          languages_details: percentage
+
+          # ⏰ WakaTime
+          plugin_wakatime: yes
+          plugin_wakatime_token: ${{ secrets.WAKATIME_TOKEN }}
+          plugin_wakatime_days: 7
+          plugin_wakatime_sections: time, projects, languages, editors, os
+          plugin_wakatime_limit: 4
+
+          # 🎼 Music activity (Last.fm)
+          plugin_music: yes
+          music_provider: lastfm
+          music_user: ${{ secrets.LASTFM_USERNAME }}
+          music_token: ${{ secrets.LASTFM_API_KEY }}
+          music_limit: 4
+
+          # 🏆 Achievements
+          plugin_achievements: yes
+          achievements_limit: 6
+
+  # ==================== JOB 2: 社交互动 + 个人介绍 + 讨论 ====================
+  metrics-job2:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          committer_token: ${{ secrets.GITHUB_TOKEN }}
+          user: PhantomPixel-0418
+          template: classic
+          base: ""                    # 不重复显示基础内容，节省空间
+          config_timezone: Asia/Shanghai
+          filename: metrics.job2.svg
+          
+          author_name: PhantomPixel-0418
+          author_email: 158539001+PhantomPixel-0418@users.noreply.github.com
+          committer_name: PhantomPixel-0418
+          committer_email: 158539001+PhantomPixel-0418@users.noreply.github.com
+
+          # 🙋 Introduction
+          plugin_introduction: yes
+          introduction_title: yes     # 显示“Hi，我是...”的标题
+
+          # 🧑‍🤝‍🧑 People (followers / following)
+          plugin_people: yes
+          people_limit: 24            # 显示人数
+          people_size: 28             # 头像大小
+          people_types: followers, following
+
+          # 🎭 Comment reactions
+          plugin_reactions: yes
+          reactions_limit: 200
+          reactions_days: 14
+
+          # 💬 Discussions
+          plugin_discussions: yes
+          discussions_limit: 4
+          discussions_categories: announcements, ideas, q-a, general
+
+          # 📰 Recent activity
+          plugin_activity: yes
+          activity_limit: 5
+          activity_days: 14
+          activity_filter: issue, pr, review, comment, push
+
+  # ==================== JOB 3: 仓库相关 + 代码变更 + 星标 + 流量 ====================
+  metrics-job3:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          committer_token: ${{ secrets.GITHUB_TOKEN }}
+          user: PhantomPixel-0418
+          template: classic
+          base: ""
+          config_timezone: Asia/Shanghai
+          filename: metrics.job3.svg
+
+          author_name: PhantomPixel-0418
+          author_email: 158539001+PhantomPixel-0418@users.noreply.github.com
+          committer_name: PhantomPixel-0418
+          committer_email: 158539001+PhantomPixel-0418@users.noreply.github.com
+
+          # 👨‍💻 Lines of code changed
+          plugin_lines: yes
+          lines_history_limit: 1      # 分析所有仓库（设为1代表全部）
+          lines_repositories_limit: 4
+
+          # ✨ Stargazers (你给别人的仓库点的星)
+          plugin_stargazers: yes
+          stargazers_charts_type: graph   # 或者 worldmap
+
+          # 🧮 Repositories traffic (你的仓库访问量)
+          plugin_traffic: yes
+          traffic_limit: 5
+
+          # 📆 Commit calendar (普通日历，但你已经有了 isocalendar，可选)
+          plugin_calendar: yes
+          calendar_limit: 1            # 1 代表最近一年
+
+          # 🧠 16personalities (需要你提供你的 MBTI 类型)
+          plugin_16personalities: yes
+          plugin_16personalities_type: "ENFJ"   # ⚠️ 改成你自己的类型！例如 INFP、ENFJ 等

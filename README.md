@@ -6,11 +6,12 @@
 
 🏫 八年级初中生 | 💻 编程爱好者 | 🚀 技术探索者
 
-[![Profile Views](https://komarev.com/ghpvc/?username=PhantomPixel-0418&label=++++访问数++++&color=blueviolet)](https://github.com/PhantomPixel-0418)
-[![GitHub Followers](https://img.shields.io/github/followers/PhantomPixel-0418?style=default&label=追随者&logo=data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBvcGFjaXR5PSIwIj48L3JlY3Q+PGc+PHBhdGggZD0iTTkuOTEgMTIuODlRMTEuMDIgMTIuODkgMTEuOTQgMTIuMzVRMTIuODYgMTEuODEgMTMuNDIgMTAuODhRMTMuOTcgOS45NiAxMy45NyA4Ljg2UTEzLjk3IDcuNzUgMTMuNDIgNi44M1ExMi44NiA1LjkgMTEuOTQgNS4zNlExMS4wMiA0LjgyIDkuOTEgNC44MlE4LjgxIDQuODIgNy44OCA1LjM2UTYuOTYgNS45IDYuNDIgNi44M1E1Ljg4IDcuNzUgNS44OCA4Ljg2UTUuODggOS45NiA2LjQyIDEwLjg4UTYuOTYgMTEuODEgNy44OCAxMi4zNVE4LjgxIDEyLjg5IDkuOTEgMTIuODlaTTkuOTEgNi4zMVExMC42MSA2LjMxIDExLjIgNi42NVExMS43OCA2Ljk4IDEyLjEyIDcuNTdRMTIuNDYgOC4xNiAxMi40NiA4Ljg2UTEyLjQ2IDkuNTUgMTIuMTIgMTAuMTNRMTEuNzggMTAuNyAxMS4yIDExLjA1UTEwLjYxIDExLjQgOS45MSAxMS40UTguODggMTEuNCA4LjE0IDEwLjY2UTcuMzkgOS45MSA3LjM5IDguODZRNy4zOSA4LjE2IDcuNzMgNy41N1E4LjA2IDYuOTggOC42NCA2LjY1UTkuMjIgNi4zMSA5LjkxIDYuMzFaTTEwLjU4IDE1LjE0UTExLjg4IDE1LjE0IDEzLjE5IDE1LjhRMTQuNSAxNi40NiAxNS4zNCAxNy41OFExNi4xOCAxOC43IDE2LjE4IDE5Ljk5UTE2LjE4IDIwLjI2IDE1Ljk4IDIwLjQ1UTE1Ljc5IDIwLjY0IDE1LjUzIDIwLjY0TDQuMyAyMC42NFE0LjAzIDIwLjY0IDMuODQgMjAuNDVRMy42NSAyMC4yNiAzLjY1IDE5Ljk5UTMuNjUgMTguNyA0LjQ5IDE3LjU4UTUuMzMgMTYuNDYgNi42NCAxNS44UTcuOTQgMTUuMTQgOS4yNCAxNS4xNEwxMC41OCAxNS4xNFpNMTUuNTMgMjIuMTNRMTYuNDIgMjIuMTMgMTcuMDUgMjEuNVExNy42OSAyMC44OCAxNy42OSAxOS45OVExNy42OSAxOC4yNiAxNi42MyAxNi44UTE1LjU4IDE1LjM0IDEzLjkyIDE0LjVRMTIuMjYgMTMuNjYgMTAuNTggMTMuNjZMOS4yNiAxMy42NlE3LjU4IDEzLjY2IDUuOTMgMTQuNVE0LjI3IDE1LjM0IDMuMjIgMTYuOFEyLjE2IDE4LjI2IDIuMTYgMTkuOTlRMi4xNiAyMC44OCAyLjc4IDIxLjVRMy40MSAyMi4xMyA0LjMgMjIuMTNMMTUuNTMgMjIuMTNaIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDEpIj48L3BhdGg+PHBhdGggZD0iTTE0LjkzIDEwLjdRMTQuNzYgMTEuMTEgMTQuNTQgMTEuNVExNC4zMyAxMS44OCAxNC4wNiAxMi4xOUwxNC43NiAxMi4xOVExNi4wNiAxMi4xOSAxNy4zNiAxMi44NFExOC42NyAxMy40OSAxOS41MSAxNC42UTIwLjM1IDE1LjcyIDIwLjM1IDE3LjA0UTIwLjM1IDE3LjMgMjAuMTYgMTcuNVExOS45NyAxNy42OSAxOS43IDE3LjY5TDE4LjUzIDE3LjY5UTE4Ljc5IDE4LjM2IDE4LjkxIDE5LjE4TDE5LjcgMTkuMThRMjAuNTkgMTkuMTggMjEuMjIgMTguNTVRMjEuODQgMTcuOTMgMjEuODQgMTcuMDRRMjEuODQgMTUuMzQgMjAuODIgMTMuOVExOS44IDEyLjQ2IDE4LjE5IDExLjZRMTYuNTggMTAuNzUgMTQuOTMgMTAuN1pNMTIuMjkgNC4xUTEyLjY1IDMuNzQgMTMuMTIgMy41NVExMy41OCAzLjM2IDE0LjA5IDMuMzZRMTQuNzggMy4zNiAxNS4zNiAzLjdRMTUuOTQgNC4wMyAxNi4yOCA0LjYyUTE2LjYzIDUuMjEgMTYuNjMgNS44OFExNi42MyA2LjYyIDE2LjI0IDcuMjRRMTUuODQgNy44NSAxNS4xOSA4LjE2TDE1LjE5IDguMjZRMTUuMjYgOC44MyAxNS4yNiA5LjExUTE1LjI2IDkuMzggMTUuMTcgOS43N1ExNi4wMSA5LjUzIDE2LjY4IDguOTZRMTcuMzUgOC40IDE3Ljc0IDcuNlExOC4xMiA2Ljc5IDE4LjEyIDUuODhRMTguMTIgNC44IDE3LjU3IDMuODhRMTcuMDIgMi45NSAxNi4wOSAyLjQxUTE1LjE3IDEuODcgMTQuMDYgMS44N1ExMy4wNiAxLjg3IDEyLjE4IDIuMzRRMTEuMyAyLjgxIDEwLjc1IDMuNlExMS40IDMuNzIgMTEuODggMy45MVExMi4xIDQuMDEgMTIuMjkgNC4xWiIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwxKSI+PC9wYXRoPjwvZz48L3N2Zz4=&color=orange)](https://github.com/PhantomPixel-0418)
-[![GitHub User Since](https://badges.pufler.dev/years/PhantomPixel-0418?style=for-the-badge&color=green)](https://badges.pufler.dev)
-[![Wakatime](https://wakatime.com/badge/user/a9aabae4-f341-463c-9cc9-ff5e14f5c312.svg)](https://wakatime.com/@a9aabae4-f341-463c-9cc9-ff5e14f5c312)
-![Last.fm 播放数](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/PhantomPixel-0418/PhantomPixel-0418/main/lastfm_data.json&query=$.playcount&label=Last.fm%20播放数&color=d51007&logo=last.fm&logoColor=white&suffix=%20播放)
+[![Profile Views](https://komarev.com/ghpvc/?username=PhantomPixel-0418&label=+++访问数++++&color=blueviolet)](https://github.com/PhantomPixel-0418)
+[![GitHub Followers](https://img.shields.io/github/followers/PhantomPixel-0418?style=default&label=追随者&color=orange)](https://github.com/PhantomPixel-0418)
+[![Repos Badge](https://badges.pufler.dev/repos/PhantomPixel-0418?label=存储库)](https://badges.pufler.dev)
+
+[![Commits Badge](https://badges.pufler.dev/commits/all/PhantomPixel-0418?label=总提交)](https://badges.pufler.dev)
+[![Commits Badge](https://badges.pufler.dev/commits/yearly/PhantomPixel-0418?label=今年提交)](https://badges.pufler.dev)
 
 </div>
 
@@ -18,44 +19,19 @@
 
 ## 🌐 多语言版本
 
-- **简体中文**
+- **简体中文** (当前)
 - [English](/README_en.md)
 
 ---
 
 ## 📊 GitHub 数据全景
 
-<div align="center">
-
-### 📈 统计概览与贡献
-
-| 综合统计 | 连续贡献记录 |
-|:---:|:---:|
-| [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=PhantomPixel-0418&show_icons=true&count_private=true&theme=radical&locale=cn&hide_border=true)](https://github.com/anuraghazra/github-readme-stats) | [![GitHub Streak](https://streak-stats.demolab.com/?user=PhantomPixel-0418&theme=radical&hide_border=true&locale=zh_Hans)](https://git.io/streak-stats) |
-
-### 💾 语言与活动
-
-| 常用语言 | 贡献活动图 |
-|:---:|:---:|
-| [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=PhantomPixel-0418&layout=compact&theme=radical&locale=cn&hide_border=true)](https://github.com/anuraghazra/github-readme-stats) | [![GitHub Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=PhantomPixel-0418&theme=github&hide_border=true&area=true)](https://github-readme-activity-graph.vercel.app) |
-
-### 🏆 成就奖杯
-
-[![GitHub Trophies](https://github-profile-trophy.vercel.app/?username=PhantomPixel-0418&theme=radical&no-frame=true&column=7&margin-w=5)](https://github.com/ryo-ma/github-profile-trophy)
-
-</div>
-
----
-
-## 🔧 技术栈与工具
+> 以下数据通过 [Metrics](https://github.com/lowlighter/metrics) 自动生成，每日 UTC 0 点更新。
 
 <div align="center">
-
-**开发工具**
-
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNNzAuOTExOSA5OS41NzIzQzcyLjQ4NjkgMTAwLjE4OSA3NC4yODI4IDEwMC4xNSA3NS44NzI1IDk5LjM4MDdMOTYuNDYwNCA4OS40MjMxQzk4LjYyNCA4OC4zNzcxIDEwMCA4Ni4xNzYyIDEwMCA4My43NjE2VjE2LjIzOTJDMTAwIDEzLjgyNDcgOTguNjI0IDExLjYyMzggOTYuNDYwNCAxMC41Nzc0TDc1Ljg3MjUgMC42MTkwNjdDNzMuNzg2MiAtMC4zODk5OTEgNzEuMzQ0NiAtMC4xNDI4ODUgNjkuNTEzNSAxLjE5NTI3QzY5LjI1MiAxLjM4NjM2IDY5LjAwMjggMS41OTk4NSA2OC43NjkgMS44MzUwMkwyOS4zNTUxIDM3Ljk3OTVMMTIuMTg3MiAyNC44OEMxMC41ODkxIDIzLjY2MDcgOC4zNTM2NSAyMy43NjA2IDYuODY5MzggMjUuMTE3OEwxLjM2MzAyIDMwLjE1MjVDLTAuNDUyNjAzIDMxLjgxMjcgLTAuNDU0NTgzIDM0LjY4MzcgMS4zNTg1NCAzNi4zNDY2TDE2LjI0NzEgNTAuMDAwMUwxLjM1ODU0IDYzLjY1MzZDLTAuNDU0NTgzIDY1LjMxNjQgLTAuNDUyNjAzIDY4LjE4NzYgMS4zNjMwMiA2OS44NDc3TDYuODY5MzggNzQuODgyNEM4LjM1MzY1IDc2LjIzOTUgMTAuNTg5MSA3Ni4zNCAxMi4xODcyIDc1LjEyMDFMMjkuMzU1MSA2Mi4wMjA3TDY4Ljc2OSA5OC4xNjUxQzY5LjM5MjUgOTguNzkyMyA3MC4xMjQ2IDk5LjI2NDUgNzAuOTExOSA5OS41NzIzWk03NS4wMTUyIDI3LjE4MTNMNDUuMTA5MiA1MC4wMDAxTDc1LjAxNTIgNzIuODE4OVYyNy4xODEzWiIgZmlsbD0id2hpdGUiLz4NCjwvc3ZnPg==&logoColor=white)
-
+  <img src="/metrics.job1.svg" width="100%">
+  <img src="/metrics.job2.svg" width="100%">
+  <img src="/metrics.job3.svg" width="100%">
 </div>
 
 ---
