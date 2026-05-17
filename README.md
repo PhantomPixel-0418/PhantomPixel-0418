@@ -29,9 +29,9 @@
 > 以下数据通过 [Metrics](https://github.com/lowlighter/metrics) 自动生成，每日 UTC 0 点更新。
 
 <div align="center">
-  <img src="/metrics.job1.svg" width="100%">
-  <img src="/metrics.job2.svg" width="100%">
-  <img src="/metrics.job3.svg" width="100%">
+<!-- METRICS START -->
+Generating textual metrics (auto-updated by workflow).
+<!-- METRICS END -->
 </div>
 
 ---

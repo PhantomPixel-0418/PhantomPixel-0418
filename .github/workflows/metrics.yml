@@ -6,97 +6,59 @@ on:
   push: {branches: ["main", "master"]}
 
 jobs:
-  # ==================== JOB 1 ====================
-  metrics-job1:
+  generate-text-metrics:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - uses: lowlighter/metrics@latest
-        with:
-          token: ${{ secrets.METRICS_TOKEN }}
-          committer_token: ${{ secrets.GITHUB_TOKEN }}
-          user: PhantomPixel-0418
-          template: classic
-          base: header, activity, community
-          config_timezone: Asia/Shanghai
-          filename: metrics.job1.svg
+      - uses: actions/checkout@v4
+      - name: Generate textual metrics and update README
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          METRICS_USER: PhantomPixel-0418
+        run: |
+          python - <<'PY'
+          import os, requests, re
+          token = os.environ.get('GITHUB_TOKEN')
+          user = os.environ.get('METRICS_USER')
+          headers = {'Authorization': f'token {token}'} if token else {}
+          u = requests.get(f'https://api.github.com/users/{user}', headers=headers).json()
+          followers = u.get('followers', 0)
+          public_repos = u.get('public_repos', 0)
+          profile = u.get('html_url', f'https://github.com/{user}')
+          # basic top languages across repos (best-effort)
+          langs = {}
+          page = 1
+          while True:
+              r = requests.get(f'https://api.github.com/users/{user}/repos?per_page=100&page={page}', headers=headers)
+              repos = r.json()
+              if not repos:
+                  break
+              for repo in repos:
+                  if repo.get('language'):
+                      langs[repo['language']] = langs.get(repo['language'], 0) + 1
+              page += 1
+          top_langs = ', '.join([k for k,_ in sorted(langs.items(), key=lambda x:-x[1])][:5]) or 'N/A'
 
-          plugin_isocalendar: yes
-          plugin_isocalendar_duration: full-year
+          md = f"### GitHub Data\n\n- [Profile]({profile})\n- Followers: **{followers}**\n- Public repositories: **{public_repos}**\n- Top languages: **{top_langs}**\n"
 
-          plugin_languages: yes
-          plugin_languages_analysis_timeout: 15
-          plugin_languages_recent_days: 30
-          plugin_languages_details: percentage
-
-          plugin_wakatime: yes
-          plugin_wakatime_token: ${{ secrets.WAKATIME_TOKEN }}
-          plugin_wakatime_days: 7
-          plugin_wakatime_sections: time, projects, languages, editors, os
-          plugin_wakatime_limit: 4
-
-          plugin_music: yes
-          plugin_music_provider: lastfm
-          plugin_music_token: ${{ secrets.LASTFM_API_KEY }}
-          plugin_music_user: ${{ secrets.LASTFM_USERNAME }}
-          plugin_music_mode: recent
-          plugin_music_limit: 4
-
-  # ==================== JOB 2 ====================
-  metrics-job2:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: lowlighter/metrics@latest
-        with:
-          token: ${{ secrets.METRICS_TOKEN }}
-          committer_token: ${{ secrets.GITHUB_TOKEN }}
-          user: PhantomPixel-0418
-          template: classic
-          base: ""
-          config_timezone: Asia/Shanghai
-          filename: metrics.job2.svg
-
-          plugin_introduction: yes
-          plugin_introduction_title: yes
-
-          plugin_people: yes
-          plugin_people_limit: 24
-          plugin_people_size: 28
-          plugin_people_types: followers, following
-
-          plugin_reactions: yes
-          plugin_reactions_limit: 200
-          plugin_reactions_days: 14
-
-          plugin_discussions: yes
-          plugin_discussions_limit: 4
-          plugin_discussions_categories: announcements, ideas, q-a, general
-
-  # ==================== JOB 3 ====================
-  metrics-job3:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: lowlighter/metrics@latest
-        with:
-          token: ${{ secrets.METRICS_TOKEN }}
-          committer_token: ${{ secrets.GITHUB_TOKEN }}
-          user: PhantomPixel-0418
-          template: classic
-          base: ""
-          config_timezone: Asia/Shanghai
-          filename: metrics.job3.svg
-
-          plugin_lines: yes
-          plugin_lines_history_limit: 1
-          plugin_lines_repositories_limit: 4
-
-          plugin_traffic: yes
-          plugin_traffic_limit: 5
-
-          plugin_calendar: yes
-          plugin_calendar_limit: 1
+          for path in ['README.md','README_en.md']:
+              try:
+                  with open(path, 'r', encoding='utf-8') as f:
+                      s = f.read()
+              except FileNotFoundError:
+                  continue
+              s_new = re.sub(r'<!-- METRICS START -->(.|\n)*?<!-- METRICS END -->', f'<!-- METRICS START -->\n{md}\n<!-- METRICS END -->', s)
+              if s_new != s:
+                  with open(path, 'w', encoding='utf-8') as f:
+                      f.write(s_new)
+          PY
+      - name: Commit README updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md README_en.md || true
+          if ! git diff --staged --quiet; then
+            git commit -m "Replace SVG metrics with text metrics\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+            git push
+          fi
