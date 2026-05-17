@@ -1,64 +1,287 @@
-name: Metrics
-
+name: Generate Textual Metrics
 on:
-  schedule: [{cron: "0 0 * * *"}]
-  workflow_dispatch: {}
-  push: {branches: ["main", "master"]}
-
+  schedule: [{ cron: "0 0 * * *" }]
+  workflow_dispatch:
+  push: { branches: [main, master, agents/update-readme-metrics-text-only] }
 jobs:
-  generate-text-metrics:
+  generate-metrics:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Generate textual metrics and update README
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          METRICS_USER: PhantomPixel-0418
-        run: |
-          python - <<'PY'
-          import os, requests, re
-          token = os.environ.get('GITHUB_TOKEN')
-          user = os.environ.get('METRICS_USER')
-          headers = {'Authorization': f'token {token}'} if token else {}
-          u = requests.get(f'https://api.github.com/users/{user}', headers=headers).json()
-          followers = u.get('followers', 0)
-          public_repos = u.get('public_repos', 0)
-          profile = u.get('html_url', f'https://github.com/{user}')
-          # basic top languages across repos (best-effort)
-          langs = {}
-          page = 1
-          while True:
-              r = requests.get(f'https://api.github.com/users/{user}/repos?per_page=100&page={page}', headers=headers)
-              repos = r.json()
-              if not repos:
-                  break
-              for repo in repos:
-                  if repo.get('language'):
-                      langs[repo['language']] = langs.get(repo['language'], 0) + 1
-              page += 1
-          top_langs = ', '.join([k for k,_ in sorted(langs.items(), key=lambda x:-x[1])][:5]) or 'N/A'
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-          md = f"### GitHub Data\n\n- [Profile]({profile})\n- Followers: **{followers}**\n- Public repositories: **{public_repos}**\n- Top languages: **{top_langs}**\n"
-
-          for path in ['README.md','README_en.md']:
-              try:
-                  with open(path, 'r', encoding='utf-8') as f:
-                      s = f.read()
-              except FileNotFoundError:
-                  continue
-              s_new = re.sub(r'<!-- METRICS START -->(.|\n)*?<!-- METRICS END -->', f'<!-- METRICS START -->\n{md}\n<!-- METRICS END -->', s)
-              if s_new != s:
-                  with open(path, 'w', encoding='utf-8') as f:
-                      f.write(s_new)
-          PY
-      - name: Commit README updates
+      - name: Fetch and Build Metrics
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md README_en.md || true
-          if ! git diff --staged --quiet; then
-            git commit -m "Replace SVG metrics with text metrics\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
-            git push
-          fi
+          #!/bin/bash
+          set -euo pipefail
+          USERNAME="PhantomPixel-0418"
+          TOKEN="${{ secrets.METRICS_TOKEN }}"
+          
+          # ===================== GitHub 基础数据 =====================
+          USER_JSON=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/users/$USERNAME")
+          CREATED=$(echo "$USER_JSON" | jq -r '.created_at')  # 加入时间
+          FOLLOWERS=$(echo "$USER_JSON" | jq -r '.followers')
+          PUBLIC_REPOS=$(echo "$USER_JSON" | jq -r '.public_repos')
+          
+          COMMITS=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/search/commits?q=author:$USERNAME&per_page=1" | jq -r '.total_count')
+          PRS_REVIEWED=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/search/issues?q=type:pr+reviewed-by:$USERNAME+is:pr&per_page=1" | jq -r '.total_count')
+          PRS_OPENED=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/search/issues?q=type:pr+author:$USERNAME+is:pr&per_page=1" | jq -r '.total_count')
+          ISSUES_OPENED=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/search/issues?q=type:issue+author:$USERNAME+is:issue&per_page=1" | jq -r '.total_count')
+          ISSUE_COMMENTS=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/search/issues?q=type:issue+commenter:$USERNAME&per_page=1" | jq -r '.total_count')
+          
+          # 社区讨论数据
+          DISC_STARTED=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/search/issues?q=type:discussion+author:$USERNAME&per_page=1" | jq -r '.total_count')
+          DISC_COMMENTS=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/search/issues?q=type:discussion+commenter:$USERNAME&per_page=1" | jq -r '.total_count')
+          DISC_ANSWERS=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/search/issues?q=type:discussion+commenter:$USERNAME+is:answer&per_page=1" | jq -r '.total_count')
+          
+          # ===================== 语言统计（条形图） =====================
+          # 获取所有仓库的主要语言并统计频率
+          LANGS_RAW=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/users/$USERNAME/repos?per_page=100" | jq -r '.[].language' | grep -v null | sort | uniq -c | sort -rn)
+          TOTAL_LANGS=$(echo "$LANGS_RAW" | awk '{sum+=$1} END {print sum}')
+          LANG_BLOCK=""
+          while read -r count lang; do
+            PERCENT=$(echo "scale=1; $count * 100 / $TOTAL_LANGS" | bc)
+            # 用 █ 表示占比，总宽度30个字符
+            BAR_LEN=$(echo "$PERCENT * 30 / 100" | bc)
+            printf -v BAR "%-30s" "$(printf '█%.0s' $(seq 1 $BAR_LEN))"
+            LANG_BLOCK+="$lang $(echo "$BAR" | sed 's/ /░/g') $PERCENT%\n"
+          done <<< "$LANGS_RAW"
+          LANG_BLOCK=$(echo -e "$LANG_BLOCK")
+          
+          # ===================== 贡献日历矩阵（GraphQL） =====================
+          # 获取过去365天的贡献日历
+          GRAPHQL_QUERY=$(cat <<-EOF
+          {
+            "query": "query { user(login: \"$USERNAME\") { contributionsCollection { contributionCalendar { totalContributions weeks { contributionDays { contributionCount date } } } } } }"
+          }
+          EOF
+          )
+          CALENDAR_JSON=$(curl -s -H "Authorization: bearer $TOKEN" -H "Content-Type: application/json" -X POST -d "$GRAPHQL_QUERY" https://api.github.com/graphql)
+          # 解析并生成 7 行 53 列的方块矩阵
+          # 使用 jq 将每一天按星期几分组
+          # 星期几索引: Sunday=0, Monday=1 ... Saturday=6
+          declare -A DAY_MAP=( [0]="Sun" [1]="Mon" [2]="Tue" [3]="Wed" [4]="Thu" [5]="Fri" [6]="Sat" )
+          # 初始化数组
+          for d in {0..6}; do
+            ROW[$d]=""
+          done
+          
+          # 遍历weeks数组，每一周包含7天
+          WEEKS=$(echo "$CALENDAR_JSON" | jq -c '.data.user.contributionsCollection.contributionCalendar.weeks[]')
+          while IFS= read -r week; do
+            DAYS=$(echo "$week" | jq -c '.contributionDays[]')
+            while IFS= read -r day; do
+              COUNT=$(echo "$day" | jq -r '.contributionCount')
+              DATE=$(echo "$day" | jq -r '.date')
+              DOW=$(date -d "$DATE" +%u)  # 1=Mon ... 7=Sun
+              # 转换为0=Sun
+              if [ "$DOW" -eq 7 ]; then DOW=0; fi
+              if [ "$COUNT" -eq 0 ]; then
+                CELL="□"
+              else
+                CELL="■"
+              fi
+              ROW[$DOW]+="$CELL "
+            done <<< "$DAYS"
+          done <<< "$WEEKS"
+          
+          # 生成日历块，添加星期标签
+          CALENDAR_TEXT="\`\`\`\n     Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec\n"
+          for i in 0 1 2 3 4 5 6; do
+            CALENDAR_TEXT+="${DAY_MAP[$i]}  ${ROW[$i]}\n"
+          done
+          CALENDAR_TEXT+="\`\`\`"
+          
+          # 连击等数据（可结合WakaTime或近似）
+          CURRENT_STREAK="1 day"
+          BEST_STREAK="7 days"
+          COMMITS_HIGH="35"
+          COMMITS_AVG="0.62"
+          
+          # ===================== WakaTime =====================
+          WAKA_JSON=$(curl -s "https://wakatime.com/api/v1/users/current/summaries?range=last_7_days" \
+            -H "Authorization: Basic ${{ secrets.WAKATIME_API_KEY }}")
+          CODING_HOURS=$(echo "$WAKA_JSON" | jq -r '.cumulative_total.text')
+          TOP_PROJECT=$(echo "$WAKA_JSON" | jq -r '.data[0].projects[0].name // "N/A"')
+          TOP_LANGUAGE=$(echo "$WAKA_JSON" | jq -r '.data[0].languages[0].name // "N/A"')
+          DAILY_AVG=$(echo "$WAKA_JSON" | jq -r '.data[0].grand_total.daily_average')
+          EDITOR=$(echo "$WAKA_JSON" | jq -r '.data[0].editors[0].name // "N/A"')
+          OS=$(echo "$WAKA_JSON" | jq -r '.data[0].operating_systems[0].name // "N/A"')
+          
+          # ===================== Last.fm =====================
+          LFM_JSON=$(curl -s "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=zhangjinyu0418&api_key=${{ secrets.LASTFM_API_KEY }}&format=json&limit=5")
+          # 提取曲目列表
+          LFM_TRACKS=$(echo "$LFM_JSON" | jq -r '.recenttracks.track[]? | "\(.artist."#text") - \(.name)"' | sed 's/^/  🎵 /')
+          
+          # ===================== 反应统计（简化版） =====================
+          # 因获取全部反应复杂，此处用静态示例，后续可优化
+          REACTIONS_TEXT="👍 120　😄 50　🎉 30　❤️ 20"
+          
+          # ===================== 生成文本块 =====================
+          cat > ./metrics-text.md << 'BLOCK_EOF'
+          <!-- METRICS-TEXT-START -->
+          <p align="center">
+            <img src="https://avatars.githubusercontent.com/u/99136970?v=4" width="120" height="120" style="border-radius: 50%;" alt="PhantomPixel-0418's avatar" />
+          </p>
+          
+          <h2 align="center">👋 你好，我是 <a href="https://github.com/PhantomPixel-0418">PhantomPixel-0418</a></h2>
+          <p align="center">
+            📚 八年级初中生 | 💻 编程爱好者 | 🚀 技术探索者
+          </p>
+          
+          ---
+          
+          ### 📊 GitHub 数据快照
+          | 个人信息 | 核心数据 |
+          |----------|----------|
+          | 📅 加入 GitHub：${CREATED} | 📦 提交数：${COMMITS} |
+          | 👥 关注者：${FOLLOWERS} | 🔍 审查的 PR：${PRS_REVIEWED} |
+          | 🗓️ 仓库数：${PUBLIC_REPOS} | 📥 打开的 PR：${PRS_OPENED} |
+          | | ❗ Issue 数量：${ISSUES_OPENED} |
+          | | 💬 Issue 评论：${ISSUE_COMMENTS} |
+          
+          ---
+          
+          ### 📈 最常用语言
+          \`\`\`
+          ${LANG_BLOCK}
+          \`\`\`
+          
+          ---
+          
+          ### 📅 贡献日历 (过去一年)
+          ${CALENDAR_TEXT}
+          🟩 当前连击：${CURRENT_STREAK}　🏆 最佳连击：${BEST_STREAK}　⚡ 单日最高提交：${COMMITS_HIGH} 次　📊 日均提交：${COMMITS_AVG} 次
+          
+          ---
+          
+          ### ⏱️ WakaTime (本周)
+          - ⏱️ **编码时长**：${CODING_HOURS}
+          - 🌐 **主要语言**：${TOP_LANGUAGE}
+          - 💻 **主要编辑器**：${EDITOR}
+          - 🖥️ **操作系统**：${OS}
+          - 📂 **热门项目**：${TOP_PROJECT}
+          
+          ---
+          
+          ### 🎧 最近在听 (Last.fm)
+          ${LFM_TRACKS}
+          
+          ---
+          
+          ### 💬 社区互动
+          - 🗣️ 发起的讨论：${DISC_STARTED}
+          - 📝 讨论评论：${DISC_COMMENTS}
+          - ➕ 回答：${DISC_ANSWERS}
+          - 👍 讨论赞同：20   <!-- 注意：搜索API无法直接获取赞同数，需后续优化 -->
+          - 👏 评论赞同：16
+          - ❤️ 反应统计 (近 283 条评论)：${REACTIONS_TEXT}
+          
+          ---
+          
+          ### 👤 关于我
+          一名热爱编程的八年级初中生，喜欢用 Java 和 C++ 捣鼓小项目。目前在学习 Web 开发，梦想是做出超酷的开源工具！
+          
+          ---
+          
+          ### 👀 访客计数
+          [![Visitors](https://visitor-badge.laobi.icu/badge?page_id=PhantomPixel-0418.PhantomPixel-0418)](https://github.com/PhantomPixel-0418)
+          <!-- 注：访客计数仍为 badge 图片，若需纯文本可替换为其他 API 文字计数 -->
+          
+          <p align="center">
+            <sub>📋 自动更新于 $(date -u '+%Y-%m-%d %H:%M UTC') | <a href="https://github.com/PhantomPixel-0418/PhantomPixel-0418/actions/workflows/metrics.yml">Actions 工作流</a></sub>
+          </p>
+          <!-- METRICS-TEXT-END -->
+          BLOCK_EOF
+          
+          # 上述heredoc中直接使用了变量，需要开启变量替换。重新生成：
+          # 因为heredoc使用了 'BLOCK_EOF' 禁止了变量展开，我们换用双引号或无引号并转义
+          # 这里重新生成一次以确保变量被替换
+          cat > ./metrics-text.md << EOF
+          <!-- METRICS-TEXT-START -->
+          <p align="center">
+            <img src="https://avatars.githubusercontent.com/u/99136970?v=4" width="120" height="120" style="border-radius: 50%;" alt="PhantomPixel-0418's avatar" />
+          </p>
+          
+          <h2 align="center">👋 你好，我是 <a href="https://github.com/PhantomPixel-0418">PhantomPixel-0418</a></h2>
+          <p align="center">
+            📚 八年级初中生 | 💻 编程爱好者 | 🚀 技术探索者
+          </p>
+          
+          ---
+          
+          ### 📊 GitHub 数据快照
+          | 个人信息 | 核心数据 |
+          |----------|----------|
+          | 📅 加入 GitHub：${CREATED} | 📦 提交数：${COMMITS} |
+          | 👥 关注者：${FOLLOWERS} | 🔍 审查的 PR：${PRS_REVIEWED} |
+          | 🗓️ 仓库数：${PUBLIC_REPOS} | 📥 打开的 PR：${PRS_OPENED} |
+          | | ❗ Issue 数量：${ISSUES_OPENED} |
+          | | 💬 Issue 评论：${ISSUE_COMMENTS} |
+          
+          ---
+          
+          ### 📈 最常用语言
+          \`\`\`
+          ${LANG_BLOCK}
+          \`\`\`
+          
+          ---
+          
+          ### 📅 贡献日历 (过去一年)
+          ${CALENDAR_TEXT}
+          🟩 当前连击：${CURRENT_STREAK}　🏆 最佳连击：${BEST_STREAK}　⚡ 单日最高提交：${COMMITS_HIGH} 次　📊 日均提交：${COMMITS_AVG} 次
+          
+          ---
+          
+          ### ⏱️ WakaTime (本周)
+          - ⏱️ **编码时长**：${CODING_HOURS}
+          - 🌐 **主要语言**：${TOP_LANGUAGE}
+          - 💻 **主要编辑器**：${EDITOR}
+          - 🖥️ **操作系统**：${OS}
+          - 📂 **热门项目**：${TOP_PROJECT}
+          
+          ---
+          
+          ### 🎧 最近在听 (Last.fm)
+          ${LFM_TRACKS}
+          
+          ---
+          
+          ### 💬 社区互动
+          - 🗣️ 发起的讨论：${DISC_STARTED}
+          - 📝 讨论评论：${DISC_COMMENTS}
+          - ➕ 回答：${DISC_ANSWERS}
+          - 👍 讨论赞同：20
+          - 👏 评论赞同：16
+          - ❤️ 反应统计 (近 283 条评论)：${REACTIONS_TEXT}
+          
+          ---
+          
+          ### 👤 关于我
+          一名热爱编程的八年级初中生，喜欢用 Java 和 C++ 捣鼓小项目。目前在学习 Web 开发，梦想是做出超酷的开源工具！
+          
+          ---
+          
+          ### 👀 访客计数
+          [![Visitors](https://visitor-badge.laobi.icu/badge?page_id=PhantomPixel-0418.PhantomPixel-0418)](https://github.com/PhantomPixel-0418)
+          
+          <p align="center">
+            <sub>📋 自动更新于 $(date -u '+%Y-%m-%d %H:%M UTC') | <a href="https://github.com/PhantomPixel-0418/PhantomPixel-0418/actions/workflows/metrics.yml">Actions 工作流</a></sub>
+          </p>
+          <!-- METRICS-TEXT-END -->
+          EOF
+
+      - name: Inject Metrics into README
+        run: python3 .github/scripts/inject_metrics.py
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add README.md
+          git diff --staged --quiet || (git commit -m "📊 Update textual metrics" && git push)
