@@ -1,6 +1,8 @@
 <a id="readme-top"></a>
 
-<div align="center">
+<>
+
+<!-- <div align="center">
 
 # 👋 你好，我是 PhantomPixel-0418
 
@@ -44,4 +46,4 @@ Generating textual metrics (auto-updated by workflow).
 
 <p align="right">(<a href="#readme-top">回到顶部</a>)</p>
 
-</div>
+</div> -->
