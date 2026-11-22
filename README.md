@@ -1,1 +1,74 @@
-![Metrics](https://metrics.lecoq.io/phantompixel-0418?template=classic&base.indepth=true&isocalendar=1&languages=1&lines=1&followup=1&introduction=1&base=header%2C%20activity%2C%20community%2C%20repositories%2C%20metadata&base.indepth=true&base.hireable=false&base.skip=false&isocalendar=false&isocalendar.duration=half-year&languages=false&languages.limit=8&languages.threshold=0%25&languages.other=false&languages.colors=github&languages.sections=most-used&languages.indepth=false&languages.analysis.timeout=15&languages.analysis.timeout.repositories=7.5&languages.categories=markup%2C%20programming&languages.recent.categories=markup%2C%20programming&languages.recent.load=300&languages.recent.days=14&lines=false&lines.sections=base&lines.repositories.limit=4&lines.history.limit=1&lines.delay=0&followup=false&followup.sections=repositories&followup.indepth=false&followup.archived=true&introduction=false&introduction.title=true&config.timezone=Asia%2FShanghai&config.padding=100%25)
+❯ whoami
+
+```bash
+{
+    "firstName": "Jinyu",
+    "lastName": "Zhang",
+    "age": 14,
+    "grade": "9",
+    "location": {
+        "city": "Suzhou",
+        "province": "Jiangsu",
+        "country": "China",
+        "timezone": "UTC+8"
+    },
+    "languages": ["zh-CN", "en-US", "en-GB", "lzh"]
+}
+```
+
+❯ github_stats
+
+<!--START_SECTION:github-->
+```bash
+{
+    "overview": {
+        "public_repos": 0,
+        "stars_received": 0,
+        "total_commits": 0,
+        "pull_requests_opened": 0,
+        "issues_opened": 0,
+        "repos_contributed_to": 0
+    },
+    "contributions": {
+        "total": 0,
+        "current_streak": 0,
+        "longest_streak": 0
+    },
+    "top_languages": {}
+}
+```
+<!--END_SECTION:github-->
+
+❯ music
+
+<!--START_SECTION:music-->
+```bash
+{
+    "now_playing": null,
+    "recent_tracks": []
+}
+```
+<!--END_SECTION:music-->
+
+❯ coding
+
+<!--START_SECTION:waka-->
+```bash
+{
+    "last_7_days": {
+        "total_time": "No activity tracked",
+        "languages": []
+    },
+    "all_time": {
+        "total_time": "No activity tracked",
+        "languages": []
+    }
+}
+```
+<!--END_SECTION:waka-->
+
+❯ exit
+
+```bash
+Process finished with exit code 0
+```

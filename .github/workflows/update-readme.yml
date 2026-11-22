@@ -1,0 +1,47 @@
+name: Update README
+
+on:
+  schedule:
+    # 每天 00:00 UTC（北京时间 08:00）
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-readme
+  cancel-in-progress: false
+
+jobs:
+  update-readme:
+    name: Update profile stats
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Update GitHub stats
+        run: python3 scripts/update_github.py
+
+      - name: Update Last.fm music
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          LASTFM_USERNAME: ${{ secrets.LASTFM_USERNAME }}
+        run: python3 scripts/update_music.py
+
+      - name: Update WakaTime coding stats
+        env:
+          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+        run: python3 scripts/update_waka.py
+
+      - name: Commit if anything changed
+        run: |
+          if git diff --quiet -- README.md; then
+            echo "No changes, nothing to commit."
+            exit 0
+          fi
+          git config user.name "PhantomPixel-0418"
+          git config user.email "phantompixel-0418@outlook.com"
+          git add README.md
+          git commit -m "chore: update profile README stats"
+          git push
