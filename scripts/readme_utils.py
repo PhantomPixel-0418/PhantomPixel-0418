@@ -34,18 +34,23 @@ def write_readme(text):
 def replace_section(text, section, content, fence=FENCE):
     """Replace the body of a marker section with new content.
 
-    If the section markers are missing, the README would silently fall
-    out of sync, so a missing marker is treated as a hard error.
+    The content is wrapped in a fenced code block unless fence is None,
+    in which case it is inserted verbatim (used for plain-HTML sections
+    like the right-aligned refresh date).
     """
     start = f"<!--START_SECTION:{section}-->"
     end = f"<!--END_SECTION:{section}-->"
     pattern = re.compile(re.escape(start) + r"[\s\S]+?" + re.escape(end))
     if not pattern.search(text):
         raise SystemExit(f"Markers for section '{section}' not found in {README_PATH}")
+    if fence:
+        replacement = f"{start}\n\n```{fence}\n{content}\n```\n\n{end}"
+    else:
+        replacement = f"{start}\n{content}\n{end}"
     # Lambda replacement inserts content verbatim, without re.sub processing
     # backslash escapes in it (a plain-string replacement would turn \\n into
     # a literal newline inside the fenced block).
-    return pattern.sub(lambda m: f"{start}\n\n```{fence}\n{content}\n```\n\n{end}", text, count=1)
+    return pattern.sub(lambda m: replacement, text, count=1)
 
 
 def update_section(section, content, fence=FENCE):
@@ -53,6 +58,7 @@ def update_section(section, content, fence=FENCE):
 
     A missing marker is reported but does not abort the run: the script
     exits 0 so the other sections still get updated and committed.
+    Pass fence=None for plain-HTML sections that need no code fence.
     """
     text = read_readme()
     try:

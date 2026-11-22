@@ -5,7 +5,7 @@
     "firstName": "Jinyu",
     "lastName": "Zhang",
     "age": 14,
-    "grade": "9",
+    "grade": 9,
     "location": {
         "city": "Suzhou",
         "province": "Jiangsu",
@@ -42,55 +42,12 @@
 ❯ music
 
 <!--START_SECTION:music-->
-
 ```bash
 {
-    "now_playing": {
-        "track": "Stray",
-        "artist": "Feint",
-        "album": "Stray",
-        "url": "https://www.last.fm/music/Feint/_/Stray"
-    },
-    "recent_tracks": [
-        {
-            "track": "Can We Kiss Forever?",
-            "artist": "Kina",
-            "album": "Can We Kiss Forever?",
-            "url": "https://www.last.fm/music/Kina/_/Can+We+Kiss+Forever%3F",
-            "played_at": "22 Nov 2026, 06:32"
-        },
-        {
-            "track": "Faded",
-            "artist": "Alan Walker",
-            "album": "Faded",
-            "url": "https://www.last.fm/music/Alan+Walker/_/Faded",
-            "played_at": "22 Nov 2026, 06:28"
-        },
-        {
-            "track": "Young and Beautiful",
-            "artist": "Lana Del Rey",
-            "album": "Young and Beautiful",
-            "url": "https://www.last.fm/music/Lana+Del+Rey/_/Young+and+Beautiful",
-            "played_at": "22 Nov 2026, 06:24"
-        },
-        {
-            "track": "Life Goes On",
-            "artist": "Oliver Tree",
-            "album": "Ugly is Beautiful: Shorter, Thicker & Uglier (Deluxe)",
-            "url": "https://www.last.fm/music/Oliver+Tree/_/Life+Goes+On",
-            "played_at": "22 Nov 2026, 06:22"
-        },
-        {
-            "track": "Far Away From Home",
-            "artist": "Groove Coverage",
-            "album": "Covergirl",
-            "url": "https://www.last.fm/music/Groove+Coverage/_/Far+Away+From+Home",
-            "played_at": "22 Nov 2026, 06:18"
-        }
-    ]
+    "total_plays": 0,
+    "recent_tracks": []
 }
 ```
-
 <!--END_SECTION:music-->
 
 ❯ coding
@@ -117,3 +74,7 @@
 ```bash
 Process finished with exit code 0
 ```
+
+<!--START_SECTION:refresh-->
+<p align="right"><small>Last refreshed: 1970-01-01 00:00 UTC</small></p>
+<!--END_SECTION:refresh-->

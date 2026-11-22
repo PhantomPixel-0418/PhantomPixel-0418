@@ -21,6 +21,8 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Update GitHub stats
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 scripts/update_github.py
 
       - name: Update Last.fm music
@@ -31,8 +33,11 @@ jobs:
 
       - name: Update WakaTime coding stats
         env:
-          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+          WAKATIME_USER_ID: ${{ secrets.WAKATIME_USER_ID }}
         run: python3 scripts/update_waka.py
+
+      - name: Update refresh date
+        run: python3 scripts/update_refresh.py
 
       - name: Commit if anything changed
         run: |
