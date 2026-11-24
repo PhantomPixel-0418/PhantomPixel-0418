@@ -25,14 +25,14 @@
     "overview": {
         "public_repos": 15,
         "stars_received": 10,
-        "total_commits": 328,
+        "total_commits": 329,
         "pull_requests_opened": 63,
         "issues_opened": 120,
         "repos_contributed_to": 7
     },
     "contributions": {
-        "total": 307,
-        "current_streak": 5,
+        "total": 308,
+        "current_streak": 6,
         "longest_streak": 9
     },
     "top_languages": {
@@ -53,12 +53,12 @@
 
 ```bash
 {
-    "total_plays": 10859,
+    "total_plays": 10874,
     "top_tracks": [
         {
             "track": "All Falls Down",
             "artist": "Alan Walker",
-            "plays": "8"
+            "plays": "7"
         },
         {
             "track": "On My Way",
@@ -66,9 +66,9 @@
             "plays": "4"
         },
         {
-            "track": "In The Shadow Of The Sun",
-            "artist": "Professor Green",
-            "plays": "4"
+            "track": "Darkside",
+            "artist": "Alan Walker",
+            "plays": "3"
         },
         {
             "track": "Faded",
@@ -94,32 +94,32 @@
 {
     "last_7_days": {
         "range": "last_7_days",
-        "total_time": "32 hrs 10 mins",
+        "total_time": "31 hrs 15 mins",
         "languages": [
             {
                 "name": "TypeScript",
-                "text": "10 hrs 12 mins",
-                "percent": 27.88
+                "text": "11 hrs 4 mins",
+                "percent": 31.13
             },
             {
                 "name": "Markdown",
-                "text": "6 hrs 47 mins",
-                "percent": 18.54
+                "text": "6 hrs 8 mins",
+                "percent": 17.28
             },
             {
                 "name": "Vue",
-                "text": "5 hrs 27 mins",
-                "percent": 14.92
+                "text": "6 hrs 6 mins",
+                "percent": 17.16
             },
             {
                 "name": "Other",
-                "text": "4 hrs 26 mins",
-                "percent": 12.12
+                "text": "4 hrs 19 mins",
+                "percent": 12.13
             },
             {
-                "name": "JavaScript",
-                "text": "3 hrs 35 mins",
-                "percent": 9.8
+                "name": "YAML",
+                "text": "2 hrs 13 mins",
+                "percent": 6.26
             }
         ]
     }
@@ -135,5 +135,5 @@ Process finished with exit code 0
 ```
 
 <!--START_SECTION:refresh-->
-<p align="right"><small>Last refreshed: 2026-11-23 05:52 UTC</small></p>
+<p align="right"><small>Last refreshed: 2026-11-24 08:30 UTC</small></p>
 <!--END_SECTION:refresh-->
