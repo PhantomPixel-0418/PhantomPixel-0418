@@ -23,16 +23,16 @@
 ```bash
 {
     "overview": {
-        "public_repos": 15,
+        "public_repos": 16,
         "stars_received": 10,
-        "total_commits": 329,
-        "pull_requests_opened": 63,
+        "total_commits": 330,
+        "pull_requests_opened": 65,
         "issues_opened": 120,
         "repos_contributed_to": 7
     },
     "contributions": {
-        "total": 308,
-        "current_streak": 6,
+        "total": 312,
+        "current_streak": 7,
         "longest_streak": 9
     },
     "top_languages": {
@@ -53,12 +53,12 @@
 
 ```bash
 {
-    "total_plays": 10874,
+    "total_plays": 10914,
     "top_tracks": [
         {
             "track": "All Falls Down",
             "artist": "Alan Walker",
-            "plays": "7"
+            "plays": "9"
         },
         {
             "track": "On My Way",
@@ -71,14 +71,14 @@
             "plays": "3"
         },
         {
-            "track": "Faded",
-            "artist": "Alan Walker",
+            "track": "Shape of You",
+            "artist": "Ed Sheeran",
             "plays": "3"
         },
         {
-            "track": "The Other Side of Paradise",
-            "artist": "Glass Animals",
-            "plays": "3"
+            "track": "Frisbee",
+            "artist": "Ahxello",
+            "plays": "2"
         }
     ]
 }
@@ -94,32 +94,32 @@
 {
     "last_7_days": {
         "range": "last_7_days",
-        "total_time": "31 hrs 15 mins",
+        "total_time": "30 hrs 50 mins",
         "languages": [
             {
                 "name": "TypeScript",
-                "text": "11 hrs 4 mins",
-                "percent": 31.13
-            },
-            {
-                "name": "Markdown",
-                "text": "6 hrs 8 mins",
-                "percent": 17.28
+                "text": "11 hrs 46 mins",
+                "percent": 35.42
             },
             {
                 "name": "Vue",
-                "text": "6 hrs 6 mins",
-                "percent": 17.16
+                "text": "6 hrs 19 mins",
+                "percent": 19.04
+            },
+            {
+                "name": "Markdown",
+                "text": "5 hrs 23 mins",
+                "percent": 16.2
             },
             {
                 "name": "Other",
-                "text": "4 hrs 19 mins",
-                "percent": 12.13
+                "text": "2 hrs 23 mins",
+                "percent": 7.2
             },
             {
                 "name": "YAML",
                 "text": "2 hrs 13 mins",
-                "percent": 6.26
+                "percent": 6.71
             }
         ]
     }
@@ -135,5 +135,5 @@ Process finished with exit code 0
 ```
 
 <!--START_SECTION:refresh-->
-<p align="right"><small>Last refreshed: 2026-11-24 08:30 UTC</small></p>
+<p align="right"><small>Last refreshed: 2026-11-25 07:05 UTC</small></p>
 <!--END_SECTION:refresh-->
