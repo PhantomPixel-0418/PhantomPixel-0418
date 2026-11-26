@@ -25,14 +25,14 @@
     "overview": {
         "public_repos": 16,
         "stars_received": 10,
-        "total_commits": 330,
-        "pull_requests_opened": 65,
+        "total_commits": 331,
+        "pull_requests_opened": 66,
         "issues_opened": 120,
         "repos_contributed_to": 7
     },
     "contributions": {
-        "total": 312,
-        "current_streak": 7,
+        "total": 314,
+        "current_streak": 8,
         "longest_streak": 9
     },
     "top_languages": {
@@ -94,32 +94,32 @@
 {
     "last_7_days": {
         "range": "last_7_days",
-        "total_time": "30 hrs 50 mins",
+        "total_time": "22 hrs 6 mins",
         "languages": [
             {
                 "name": "TypeScript",
-                "text": "11 hrs 46 mins",
-                "percent": 35.42
-            },
-            {
-                "name": "Vue",
-                "text": "6 hrs 19 mins",
-                "percent": 19.04
+                "text": "7 hrs 35 mins",
+                "percent": 32.36
             },
             {
                 "name": "Markdown",
-                "text": "5 hrs 23 mins",
-                "percent": 16.2
+                "text": "5 hrs 37 mins",
+                "percent": 23.96
+            },
+            {
+                "name": "Vue",
+                "text": "4 hrs 16 mins",
+                "percent": 18.23
             },
             {
                 "name": "Other",
-                "text": "2 hrs 23 mins",
-                "percent": 7.2
+                "text": "1 hr 21 mins",
+                "percent": 5.79
             },
             {
                 "name": "YAML",
-                "text": "2 hrs 13 mins",
-                "percent": 6.71
+                "text": "1 hr 7 mins",
+                "percent": 4.78
             }
         ]
     }
@@ -135,5 +135,5 @@ Process finished with exit code 0
 ```
 
 <!--START_SECTION:refresh-->
-<p align="right"><small>Last refreshed: 2026-11-25 07:05 UTC</small></p>
+<p align="right"><small>Last refreshed: 2026-11-26 06:56 UTC</small></p>
 <!--END_SECTION:refresh-->
