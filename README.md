@@ -25,14 +25,14 @@
     "overview": {
         "public_repos": 16,
         "stars_received": 10,
-        "total_commits": 331,
+        "total_commits": 332,
         "pull_requests_opened": 66,
         "issues_opened": 120,
         "repos_contributed_to": 7
     },
     "contributions": {
-        "total": 314,
-        "current_streak": 8,
+        "total": 315,
+        "current_streak": 9,
         "longest_streak": 9
     },
     "top_languages": {
@@ -53,31 +53,31 @@
 
 ```bash
 {
-    "total_plays": 10914,
+    "total_plays": 10948,
     "top_tracks": [
         {
             "track": "All Falls Down",
             "artist": "Alan Walker",
-            "plays": "9"
-        },
-        {
-            "track": "On My Way",
-            "artist": "Alan Walker",
             "plays": "4"
         },
         {
-            "track": "Darkside",
-            "artist": "Alan Walker",
+            "track": "Run Free (feat. IVIE)",
+            "artist": "Deep Chills",
             "plays": "3"
         },
         {
-            "track": "Shape of You",
-            "artist": "Ed Sheeran",
+            "track": "Sound of Walking Away",
+            "artist": "Illenium",
             "plays": "3"
         },
         {
             "track": "Frisbee",
             "artist": "Ahxello",
+            "plays": "2"
+        },
+        {
+            "track": "Lily",
+            "artist": "Alan Walker",
             "plays": "2"
         }
     ]
@@ -94,32 +94,32 @@
 {
     "last_7_days": {
         "range": "last_7_days",
-        "total_time": "22 hrs 6 mins",
+        "total_time": "22 hrs 35 mins",
         "languages": [
             {
                 "name": "TypeScript",
-                "text": "7 hrs 35 mins",
-                "percent": 32.36
+                "text": "8 hrs 6 mins",
+                "percent": 33.85
             },
             {
                 "name": "Markdown",
-                "text": "5 hrs 37 mins",
-                "percent": 23.96
+                "text": "5 hrs 21 mins",
+                "percent": 22.35
             },
             {
                 "name": "Vue",
-                "text": "4 hrs 16 mins",
-                "percent": 18.23
+                "text": "4 hrs 22 mins",
+                "percent": 18.24
             },
             {
                 "name": "Other",
                 "text": "1 hr 21 mins",
-                "percent": 5.79
+                "percent": 5.67
             },
             {
                 "name": "YAML",
                 "text": "1 hr 7 mins",
-                "percent": 4.78
+                "percent": 4.68
             }
         ]
     }
@@ -135,5 +135,5 @@ Process finished with exit code 0
 ```
 
 <!--START_SECTION:refresh-->
-<p align="right"><small>Last refreshed: 2026-11-26 06:56 UTC</small></p>
+<p align="right"><small>Last refreshed: 2026-11-27 06:50 UTC</small></p>
 <!--END_SECTION:refresh-->
